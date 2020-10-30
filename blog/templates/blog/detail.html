@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+{{post.title}}
+{% endblock title %}
+{% block content %}
+    {% if user.username == post.author.username %}
+        <a href  = '{% url "update_post" post.id %}'>Update</a>
+        <a href  = '{% url "delete_post" post.id %}'>Delete</a>
+    {% endif %}
+    <p style='color:red'>{{post.author}}</p>
+    <p style='font-size:10px'>{{post.created}}</p>
+    <p>{{post.title}}</p>
+    {% if post.image %}
+        <img src="{{post.image.url}}" alt="" >
+    {% endif %}
+    <p>{{post.text}}</p>
+    {% if user.username %}
+        <form action="{% url 'post_detail' post.id %}" method='POST'>
+            {%csrf_token%}
+            <p><lable>Bình luận: </lable></p>
+            {{form.as_p}}
+            <br>
+            <input type='submit' value='Bình luận'>
+        </form>
+    {%endif%}
+    {% for comment  in post.comments.all.order_by %}
+        <h4><strong>{{comment.author}}</strong></h4>
+        <h6><p>{{comment.date}}</p></h6>
+        <p>{{comment.body|linebreaks}}</p>
+    {% endfor %}
+
+{% endblock content %}

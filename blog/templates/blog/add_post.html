@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+Add Post
+{% endblock title %}
+
+{% block content %}
+
+{% if user.username %}
+    <h1>Hello {{user.username}}<h1>
+    <form action="{% url 'add_post' %}" method='POST' enctype="multipart/form-data">
+        {%csrf_token%}
+        <p><lable>Thêm bài viết: </lable></p>
+        {{form.as_p}}
+        <br>
+        <input type='submit' value='ADD'>
+    </form>
+{% endif %}
+
+{% endblock %}

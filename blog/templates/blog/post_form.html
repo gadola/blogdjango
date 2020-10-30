@@ -1,0 +1,28 @@
+{% load static  %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nam's Blog</title>
+</head>
+<body>
+    <h1>Welcome to Nam's blog</h1><a></a>
+    <p style='color:red'>{{post.author}}</p>
+    <p style='font-size:9px'>{{post.created}}</p>
+    <p>{{post.title}}</p>
+    {% if post.image %}
+        <img src="{{post.image.url}}" alt="" width="10%" height="10%">
+    {% endif %}
+    <p>{{post.text}}</p>
+    {% if user.username %}
+        <form action="{% url 'update_post' post.id %}" method='POST' enctype="multipart/form-data">
+            {%csrf_token%}
+            <p><lable>Update: </lable></p>
+            {{ form.as_p }}  
+            <input type='submit'  value='update'>
+        </form>
+    {%endif%}
+    
+</body>
+</html>
