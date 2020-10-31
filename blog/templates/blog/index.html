@@ -5,9 +5,12 @@ Nam's Blog
 {% endblock title %}
 {% block content %}
     {% if user.username %}
-    <h1>Hello {{user.username}}<h1>
-    <a href="{% url 'logout' %}">Logout</a><br>
-    <a href="{% url 'add_post' %}">Add Post</a><br>
+        <h1>Hello {{user.username}}<h1>
+        <a href="{% url 'logout' %}">Logout</a><br>
+        <a href="{% url 'add_post' %}">Add Post</a><br>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a><br>
+        <a href="{% url 'register' %}">Signup</a><br>
     {% endif %}
             <div class="row tm-row">
                 {% for item in posts %}
