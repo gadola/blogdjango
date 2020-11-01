@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'blog',
     'home',
-    'whitenoise.runserver_nostatic',
-
 ]
 
 MIDDLEWARE = [
@@ -130,6 +128,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
    os.path.join(BASE_DIR, "static"),
 ]
+
 MEDIA_URL ='/media/'
 MEDIA_ROOT =os.path.join(BASE_DIR,'media')
 
