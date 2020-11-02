@@ -1,22 +1,54 @@
+{% extends "blog/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nam's Blog</title>
-</head>
-<body>
-    <form action="" method="POST">
-        {% csrf_token %}
-        {% for key,value in form.errors.item %}
-        {{value}}
-        {% endfor %}<p><label for="">Tài khoản :</label>{{form.username}}</p>
-        <p><label for="">Mật khảu  :</label>{{form.password}}</p>
-        <input type="hidden" name="next" value="/">
-        <input type="submit" value="Login">
-        <a href = '{% url "register" %}'>register</a>
-    </form>
-    
-</body>
-</html>
+{% block title %}
+Login
+{% endblock title %}
+{% block content %}
+
+            <!-- === BEGIN CONTENT === -->
+            <div id="content">
+                <div class="container background-white">
+                    <div class="container">
+                        <div class="row margin-vert-30">
+                            <!-- Login Box -->
+                            <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+                                <form action="" method="POST" class="login-page">
+                                    {% csrf_token %}                                                   
+                                    <div class="login-header margin-bottom-30">
+                                        <h2>Login to your account</h2>
+                                    </div>
+                                    <div class="input-group margin-bottom-20">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-user"></i>
+                                        </span>
+                                        {{form.username}}                                
+                                    </div>
+                                    <div class="input-group margin-bottom-20">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-lock"></i>
+                                        </span>                                       
+                                        {{form.password}}                                   
+                                    </div>
+                                    <span style="color:red">{{error}}</span>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="checkbox">
+                                                <input type="checkbox">Stay signed in</label>
+                                        </div>                                       
+                                        <div class="col-md-6">
+                                            <button class="btn btn-primary pull-right" type="submit">Login</button>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <h4>Forget your Password ?</h4>
+                                    <p>
+                                        <a href="#">Click here</a> to reset your password.</p>
+                                </form>
+                            </div>
+                            <!-- End Login Box -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- === END CONTENT === -->
+{% endblock content %}

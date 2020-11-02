@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nam's Blog</title>
+</head>
+<body>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for key,value in form.errors.item %}
+        {{value}}
+        {% endfor %}<p><label for="">Tài khoản :</label>{{form.username}}</p>
+        <p><label for="">Mật khảu  :</label>{{form.password}}</p>
+        <input type="hidden" name="next" value="/">
+        <input type="submit" value="Login">
+        <a href = '{% url "home:register" %}'>register</a>
+    </form>
+    
+</body>
+</html>

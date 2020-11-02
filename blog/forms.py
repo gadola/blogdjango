@@ -18,7 +18,7 @@ class CommentForms(forms.ModelForm):
         model = Comment
         fields = ['body']
         widgets = {
-            'body':forms.Textarea(attrs={'cols':'40','rows':'1'}),
+            'body':forms.Textarea(attrs={'cols':'40','rows':'1',"class":"form-control"}),
         }
 
 
@@ -36,12 +36,18 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ['title','text', 'image']
         widgets = {
-            'text':forms.Textarea(attrs={'cols':'40','rows':'4'}),
+            'text':forms.Textarea(attrs={'placeholder':"Content" ,'class':"form-control",}),
+            'title':forms.TextInput(attrs={'placeholder':"Title" ,'class':"form-control"}),
         }
 
 class PostUpdateForm(forms.ModelForm):
-    class Mete:
+    
+    class Meta:
         model = Post
-        fields  = ['title','text','image']
+        fields = ['title','text', 'image']
+        widgets = {
+            'text':forms.Textarea(attrs={'placeholder':"Content" ,'class':"form-control",}),
+            'title':forms.TextInput(attrs={'placeholder':"Title" ,'class':"form-control"}),
+        }
         success_url ="/"
 

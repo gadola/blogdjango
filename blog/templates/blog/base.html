@@ -1,99 +1,338 @@
+<!-- === BEGIN HEADER === -->
 <!DOCTYPE html>
 {% load static %}
+
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>{% block title %}{% endblock %}</title>
-	<link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}"> <!-- https://fontawesome.com/ -->
-	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
-    <link href=" {% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/templatemo-xtra-blog.css' %}" rel="stylesheet">
-<!--
-    
-TemplateMo 553 Xtra Blog
-
-https://templatemo.com/tm-553-xtra-blog
-
--->
-</head>
-<body>
-	<header class="tm-header" id="tm-header">
-        <div class="tm-header-wrapper">
-            <button class="navbar-toggler" type="button" aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="tm-site-header">
-                <div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>            
-                <h1 class="text-center">Nam Blog</h1>
+    <!--<![endif]-->
+    <head>
+        <!-- Title -->
+        <title> {% block title %}{% endblock title %} </title>
+        <!-- Meta -->
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <!-- Favicon -->
+        <link href="favicon.ico" rel="shortcut icon">
+        <!-- Bootstrap Core CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.css' %}" rel="stylesheet">
+        <!-- Template CSS -->
+        <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/font-awesome.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/nexus.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}" rel="stylesheet">
+        <!-- Google Fonts-->
+        <link href="http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300" rel="stylesheet" type="text/css">
+        <link href="http://fonts.googleapis.com/css?family=PT+Sans" type="text/css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Roboto:400,300" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <div id="body-bg">
+            <ul class="social-icons pull-right hidden-xs">
+                <li class="social-rss">
+                    <a href="#" target="_blank" title="RSS"></a>
+                </li>
+                <li class="social-twitter">
+                    <a href="https://twitter.com/Nam10210346" target="_blank" title="Twitter"></a>
+                </li>
+                <li class="social-facebook">
+                    <a href="https://www.facebook.com/CoktailDail" target="_blank" title="Facebook"></a>
+                </li>
+                <li class="social-googleplus">
+                    <a href="#" target="_blank" title="GooglePlus"></a>
+                </li>
+            </ul>
+            <div id="pre-header" class="container" style="height: 40px">
+                <!-- Spacing above header -->
             </div>
-            <nav class="tm-nav" id="tm-nav">            
-                <ul>
-                    <li class="tm-nav-item BlogHome active"><a href="{% url 'index' %}" class="tm-nav-link">
-                        <i class="fas fa-home"></i>
-                        Blog Home
-                    </a></li>
-                    <li class="tm-nav-item SinglePost"><a href="{% url 'add_post' %}" class="tm-nav-link">
-                        <i class="fas fa-pen"></i>
-                        Single Post
-                    </a></li>
-                    <li class="tm-nav-item AboutMe"><a href="{% url 'about' %}" class="tm-nav-link">
-                        <i class="fas fa-users"></i>
-                        About Me
-                    </a></li>
-                    <li class="tm-nav-item ContactUs"><a href="{% url 'contact' %}" class="tm-nav-link">
-                        <i class="far fa-comments"></i>
-                        Contact Us
-                    </a></li>
-                </ul>
-            </nav>
-            <div class="tm-mb-65">
-                <a rel="nofollow" href="https://www.facebook.com/CoktailDail/" class="tm-social-link">
-                    <i class="fab fa-facebook tm-social-icon"></i>
-                </a>
-                <a href="https://twitter.com/Nam10210346" class="tm-social-link">
-                    <i class="fab fa-twitter tm-social-icon"></i>
-                </a>
-                <a href="https://www.instagram.com/abeefert/" class="tm-social-link">
-                    <i class="fab fa-instagram tm-social-icon"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/nam-ho%C3%A0ng-350835174/" class="tm-social-link">
-                    <i class="fab fa-linkedin tm-social-icon"></i>
-                </a>
+            <div id="header">
+                <div class="container">
+                    <div class="row">
+                        <!-- Logo -->
+                        <div class="logo">
+                            <a href="index.html" title="">
+                                <img src="{% static 'assets/img/logo.png' %}" alt="Logo" />
+                            </a>
+                        </div>
+                        <!-- End Logo -->
+                    </div>
+                </div>
             </div>
-            <p class="tm-mb-80 pr-5 text-white">
-                This is my description 
-            </p>
-        </div>
-    </header>
-    <div class="container-fluid">
-        <main class="tm-main">
-            <!-- Search form -->
-            <div class="row tm-row">
-                <div class="col-12">
-                    <form method="GET" action="{% url 'search' %}" class="form-inline tm-mb-80 tm-search-form">                
-                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
-                        <button class="tm-search-button" type="submit">
-                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
-                        </button>                                
-                    </form>
-                </div>                
-            </div>            
-            {% block content %}{% endblock %}
+            <!-- Top Menu -->
+            <div id="hornav" class="container no-padding">
+                <div class="row">
+                    <div class="col-md-12 no-padding">
+                        <div class="text-center visible-lg">
+                            <ul id="hornavmenu" class="nav navbar-nav">
+                                <li>
+                                    <a href="{% url 'index' %}" class="fa-home">Home</a>
+                                </li>
+                                {% comment %} <li>
+                                    <span class="fa-gears">Features</span>
+                                    <ul>
+                                        <li class="parent">
+                                            <span>Typography</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Basic Typography</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Blockquotes</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="parent">
+                                            <span>Components</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Labels</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Progress Bars</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Panels</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Pagination</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="parent">
+                                            <span>Icons</span>
+                                            <ul>
+                                                <li>
+                                                    <a href="#">Icons General</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Social Icons</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Font Awesome</a>
+                                                </li>
+                                                <li>
+                                                    <a href="#">Glyphicons</a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#">Testimonials</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Accordions & Tabs</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Buttons</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Carousels</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Grid System</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Animate On Scroll</a>
+                                        </li>
+                                    </ul>
+                                </li> {% endcomment %}
+                                <li>
+                                    <span class="fa-copy">Pages</span>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'about' %}">About Me</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'home:login' %}">Login</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'home:logout' %}">Logout</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'home:register' %}">Sign-Up</a>
+                                        </li>
+                                        <li>
+                                            <a href="404page">404 Error Page</a>
+                                        </li>
+                                        {% comment %} <li>
+                                            <a href="#">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Services</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">F.A.Q.</a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="#">Full Width</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Left Sidebar</a>
+                                        </li>
+                                        <li>
+                                            <a href="#">Right Sidebar</a>
+                                        </li> {% endcomment %}
+                                        
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="fa-th">Portfolio</span>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'blog2' %}">2 Column</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'blog3' %}">3 Column</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'blog4' %}">4 Column</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'blog6' %}">6 Column</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <span class="fa-font"><a href="{% url 'blog' %}" style="color:white;">Blog</a></span>
+                                    <ul>
+                                        <li>
+                                            <a href="{% url 'blog' %}">Blog</a>
+                                        </li>
+                                        {% comment %} <li>
+                                            <a href="#">Blog Single Item</a>
+                                        </li> {% endcomment %}
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="{% url 'contact' %}" class="fa-comment">Contact</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Top Menu -->
+            <div id="post_header" class="container" style="height: 40px">
+                <!-- Spacing below header -->
+            </div>
+            <div id="content-top-border" class="container">
+            </div>
+            <!-- === END HEADER === -->
+
+
+           {% block content %}
+           {% endblock content %}
+
             
-            <footer class="row tm-row">
-                <hr class="col-12">
-                <div class="col-md-6 col-12 tm-color-gray">
-                    Design: <a rel="nofollow" target="_parent" href="https://www.facebook.com/CoktailDail/" class="tm-external-link">Nam Hoàng</a>
+            <!-- === BEGIN FOOTER === -->
+            <div id="content-bottom-border" class="container">
+            </div>
+            <div id="base">
+                <div class="container padding-vert-30 margin-top-60">
+                    <div class="row">
+                        <!-- Contact Details -->
+                        <div class="col-md-4 margin-bottom-20">
+                            <h3 class="margin-bottom-10">Contact Details</h3>
+                            <p>
+                                <span class="fa-phone">Telephone:</span>(+84)855-457-078
+                                <br>
+                                <span class="fa-envelope">Email:</span>
+                                <a href="mailto:info@joomla51.com">efert269@gmail.com</a>
+                                <br>
+                                <span class="fa-link">Website:</span>
+                                <a href="namblogdjango.herokuapp.com/">namblogdjango.herokuapp.com</a>
+                            </p>
+                            <p>409/108/68, TCH18,
+                                <br>Tan Chanh Hiep Ward,
+                                <br>12 District,
+                                <br>Ho Chi Minh City.</p>
+                        </div>
+                        <!-- End Contact Details -->
+                        <!-- Sample Menu -->
+                        <div class="col-md-3 margin-bottom-20">
+                            <h3 class="margin-bottom-10">My Skill</h3>
+                            <ul class="menu">
+                                <li>
+                                    <a class="fa-tasks" href="#">Python/Django</a>
+                                </li>
+                                <li>
+                                    <a class="fa-users" href="#">HTML/Css/Js</a>
+                                </li>
+                                <li>
+                                    <a class="fa-signal" href="#">PHP</a>
+                                </li>
+                                <li>
+                                    <a class="fa-coffee" href="#">C++</a>
+                                </li>
+                            </ul>
+                            <div class="clearfix"></div>
+                        </div>
+                        <!-- End Sample Menu -->
+                        <div class="col-md-1"></div>
+                        <!-- Disclaimer -->
+                        <div class="col-md-3 margin-bottom-20 padding-vert-30 text-center">
+                            <h3 class="color-gray margin-bottom-10">Join our Newsletter</h3>
+                            <p>
+                                Sign up for our newsletter for all the
+                                <br>latest news and information
+                            </p>
+                            <input type="email">
+                            <br>
+                            <button class="btn btn-primary btn-lg margin-top-20" type="button">Subscribe</button>
+                        </div>
+                        <!-- End Disclaimer -->
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
-                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
-                    Copyright 2020 Nam Hoang Blog Co. Ltd.
+            </div>
+            <!-- Footer Menu -->
+            <div id="footer">
+                <div class="container">
+                    <div class="row">
+                        <div id="footermenu" class="col-md-8">
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <a href="#" target="_blank">Sample Link</a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">Sample Link</a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">Sample Link</a>
+                                </li>
+                                <li>
+                                    <a href="#" target="_blank">Sample Link</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="copyright" class="col-md-4">
+                            <p class="pull-right">(c) 2020 Hoang Nam Copyright</p>
+                        </div>
+                    </div>
                 </div>
-            </footer>
-        </main>
-    </div>
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/base_blog.js' %}"></script>
-    <script src="{% static 'js/templatemo-script.js' %}"></script>
-</body>
+            </div>
+            <!-- End Footer Menu -->
+            <!-- JS -->
+            <script type="text/javascript" src="{% static 'assets/js/jquery.min.js' %}" type="text/javascript"></script>
+            <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}" type="text/javascript"></script>
+            <script type="text/javascript" src="{% static 'assets/js/scripts.js' %}"></script>
+            <!-- Isotope - Portfolio Sorting -->
+            <script type="text/javascript" src="{% static 'assets/js/jquery.isotope.js' %}" type="text/javascript"></script>
+            <!-- Mobile Menu - Slicknav -->
+            <script type="text/javascript" src="{% static 'assets/js/jquery.slicknav.js' %}" type="text/javascript"></script>
+            <!-- Animate on Scroll-->
+            <script type="text/javascript" src="{% static 'assets/js/jquery.visible.js' %}" charset="utf-8"></script>
+            <!-- Sticky Div -->
+            <script type="text/javascript" src="{% static 'assets/js/jquery.sticky.js' %}" charset="utf-8"></script>
+            <!-- Slimbox2-->
+            <script type="text/javascript" src="{% static 'assets/js/slimbox2.js' %}" charset="utf-8"></script>
+            <!-- Modernizr -->
+            <script src="{% static 'assets/js/modernizr.custom.js' %}" type="text/javascript"></script>
+            <!-- End JS -->
+    </body>
 </html>
+<!-- === END FOOTER === -->

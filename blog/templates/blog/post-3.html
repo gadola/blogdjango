@@ -1,0 +1,73 @@
+{% extends "blog/base.html" %}
+
+{% block title %}
+Post
+{% endblock title %}
+
+{% block content %}
+
+
+<!-- === BEGIN CONTENT === -->
+            <div id="content">
+                <div class="container background-white">
+                    {% if user.username %}
+                    <a href="{% url 'add_post' %}" class="btn btn-violet" style="margin-top:20px">
+                        <i class="fa fa-picture-o"></i> Add Post
+                        <i class="icon-chevron-right readmore-icon"></i>
+                    </a>
+                    {% endif %}
+                    <div class="row margin-vert-30">
+                        <div class="col-md-12">
+                            <h2>3 Column Post</h2>
+                            <!-- Filter Buttons -->
+                            <div class="portfolio-filter-container margin-top-20">
+                                <ul class="portfolio-filter">
+                                    <li class="portfolio-filter-label label label-primary">
+                                        filter by:
+                                    </li>
+                                    <li>
+                                        <a href="#" class="portfolio-selected btn btn-default" data-filter="*">All</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-default" data-filter=".code">Coding</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-default" data-filter=".design">Design</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-default" data-filter=".audio">Audio</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="btn btn-default" data-filter=".video">Video</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- End Filter Buttons -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 portfolio-group no-padding">
+                            <!-- Portfolio Item -->
+                            {% for item in posts %}
+                            <div class="col-md-4 portfolio-item margin-bottom-40 video">
+                                <div>
+                                    <a href="{% url 'post_detail' item.id %}">
+                                        <figure>
+                                            <img src="{{ item.image.url }}" alt="image1">
+                                            <figcaption>
+                                                <h3 class="margin-top-20">{{ item.title }}</h3>
+                                                <span>{{item.text}}</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            <!-- End Portfolio Item -->
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- === END CONTENT === -->
+{% endblock content %}

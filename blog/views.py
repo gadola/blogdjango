@@ -15,14 +15,43 @@ from django.http import JsonResponse
 from .serializers import PostSerializer , UserSerializer
 from django.contrib.auth.models import User
 from .permissions import IsAuthorOrReadOnly
+from django.http import Http404
+
 # Create your views here.
 
 
-class PostListView(ListView):
+class HomeView(ListView):
     queryset      = Post.objects.all().order_by("-created")
     template_name = 'blog/index.html'
     context_object_name = 'posts'
     paginate_by = 6 # tách ra 2 bài viết mỗi trang 
+
+class PostListView(ListView):
+    queryset      = Post.objects.all().order_by("-created")
+    template_name = 'blog/post-list.html'
+    context_object_name = 'posts'
+    paginate_by = 6 # tách ra 2 bài viết mỗi trang 
+
+class PostListView2(ListView):
+    queryset      = Post.objects.all().order_by("-created")
+    template_name = 'blog/post-2.html'
+    context_object_name = 'posts'
+
+class PostListView3(ListView):
+    queryset      = Post.objects.all().order_by("-created")
+    template_name = 'blog/post-3.html'
+    context_object_name = 'posts'
+
+class PostListView4(ListView):
+    queryset      = Post.objects.all().order_by("-created")
+    template_name = 'blog/post-4.html'
+    context_object_name = 'posts'
+
+class PostListView6(ListView):
+    queryset      = Post.objects.all().order_by("-created")
+    template_name = 'blog/post-6.html'
+    context_object_name = 'posts'
+    
 
 def search(request):
     query = request.GET['query']
@@ -51,7 +80,10 @@ class Index(View):
     
 class PostDetailView(View):
     def get(self,request,pk):
-        post =  get_object_or_404(Post,pk=pk)
+        try:
+            post = Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            raise Http404("Bài viết không tồn tại")
         form = CommentForms()
         return render(request, 'blog/detail.html', {"post":post, "form":form})
     
@@ -91,6 +123,7 @@ class PostUpdate(UpdateView):
    
 def about(request):
     return render(request,'blog/about.html')
+    
 def contact(request):
     return render(request,'blog/contact.html')
 
@@ -164,3 +197,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+def error(request, exception):
+    return render(request, 'blog/page404.html', {'message': exception})

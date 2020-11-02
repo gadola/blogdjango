@@ -1,82 +1,139 @@
 {% extends "blog/base.html" %}
+{% load static %}
 
-{% block title %}
-Nam's Blog
-{% endblock title %}
+{% block title %}Home{% endblock title %}
+
+
 {% block content %}
-    {% if user.username %}
-        <h1>Hello {{user.username}}<h1>
-        <a href="{% url 'logout' %}">Logout</a><br>
-        <a href="{% url 'add_post' %}">Add Post</a><br>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a><br>
-        <a href="{% url 'register' %}">Signup</a><br>
-    {% endif %}
-            <div class="row tm-row">
-                {% for item in posts %}
-                <article class="col-12 col-md-6 tm-post">
-                    <hr class="tm-hr-primary">
-                    <a href="{% url 'post_detail' item.id %}" class="effect-lily tm-post-link tm-pt-60">
-                        <div class="tm-post-link-inner">
-                        {% if item.image %}
-                            <img src="{{ item.image.url }}" alt="Image" class="img-fluid">  
-                        {% endif %}                          
+
+            <!-- === BEGIN CONTENT === -->
+            <div id="content">
+                <div class="container no-padding">
+                    <div class="row">
+                        <!-- Carousel Slideshow -->
+                        <div id="carousel-example" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel Indicators -->
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example" data-slide-to="1"></li>
+                                <li data-target="#carousel-example" data-slide-to="2"></li>
+                            </ol>
+                            <div class="clearfix"></div>
+                            <!-- End Carousel Indicators -->
+                            <!-- Carousel Images -->
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img src="{% static 'assets/img/slideshow/slide1.jpg' %}"/>
+                                </div>
+                                <div class="item">
+                                    <img src="{% static 'assets/img/slideshow/slide2.jpg' %}"/>
+                                </div>
+                                <div class="item">
+                                    <img src="{% static 'assets/img/slideshow/slide3.jpg' %}"/>
+                                </div>
+                                <div class="item">
+                                    <img src="{% static 'assets/img/slideshow/slide4.jpg' %}"/>
+                                </div>
+                            </div>
+                            <!-- End Carousel Images -->
+                            <!-- Carousel Controls -->
+                            <a class="left carousel-control" href="#carousel-example" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                            <!-- End Carousel Controls -->
                         </div>
-                        <span class="position-absolute tm-new-badge">New</span>
-                        <h2 class="tm-pt-30 tm-color-primary tm-post-title">{{item.title}}</h2>
-                    </a>                    
-                    <p class="tm-pt-30">
-                        {{ item.text }}
-                    </p>
-                    <div class="d-flex justify-content-between tm-pt-45">
-                        <span class="tm-color-primary">Travel . Events</span>
-                        <span class="tm-color-primary">{{item.created}}</span>
+                        <!-- End Carousel Slideshow -->
                     </div>
-                    <hr>
-                    <div class="d-flex justify-content-between">
-                        <span>36 comments</span>
-                        <span>by {{item.author}}</span>
-                    </div>
-                </article>
-                {% endfor %}
-            </div>
-            <div class="row tm-row tm-mt-100 tm-mb-75 pagination">
-                <div class="tm-prev-next-wrapper ">
-                    <span class="step-links">
-                        {% if page_obj.has_previous %}
-                            <a href="?page=1">&laquo; first</a>
-                            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-                        {% endif %}
-
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-                        </span>
-
-                        {% if page_obj.has_next %}
-                            <a href="?page={{ page_obj.next_page_number }}">next</a>
-                            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
-                        {% endif %}
-                    </span>
                 </div>
-                <div class="tm-paging-wrapper">
-                    <span class="d-inline-block mr-3">Page</span>
-                    <nav class="tm-paging-nav d-inline-block">
-                        <ul>
-                            <li class="tm-paging-item active">
-                                <a href="?page=1" class="mb-2 tm-btn tm-paging-link">1</a>
-                            </li>
-                            <li class="tm-paging-item active">
-                                <a href="?page=2" class="mb-2 tm-btn tm-paging-link">2</a>
-                            </li>
-                            <li class="tm-paging-item active">
-                                <a href="?page=3" class="mb-2 tm-btn tm-paging-link">3</a>
-                            </li>
-                            <li class="tm-paging-item active">
-                                <a href="?page=4" class="mb-2 tm-btn tm-paging-link">4</a>
-                            </li>
-                            
-                        </ul>
-                    </nav>
-                </div>                
+                <div class="container background-gray-lighter">
+                    <div class="row margin-vert-40">
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                <i class="fa-clock-o fa-5x color-primary"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="margin-top-5 margin-bottom-0">3,474.5</h2>
+                                <p>WORKING HOURS</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                <i class="fa-tachometer fa-5x color-primary"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="margin-top-5 margin-bottom-0">3,474.5</h2>
+                                <p>WORKING HOURS</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="col-md-4">
+                                <i class="fa-users fa-5x color-primary"></i>
+                            </div>
+                            <div class="col-md-8">
+                                <h2 class="margin-top-5 margin-bottom-0">3,474.5</h2>
+                                <p>WORKING HOURS</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container background-white">
+                    <div class="row margin-vert-30">
+                        <!-- Main Text -->
+                        <div class="col-md-12">
+                            <h2 class="text-center">Welcome to LifeStyle</h2>
+                            <p class="text-center">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit
+                                lobortis nisl ut aliquip ex ea commodo consequat.</p>
+                            <p class="text-center">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit
+                                augue duis dolore te feugait nulla facilisi. Cras non sem sem, at eleifend mi. Nam liber tempor cum soluta nobis eleifend option congue nihil imperdiet doming id quod mazim placerat facer possim assum. Curabitur eget nisl
+                                a risus.</p>
+                        </div>
+                        <!-- End Main Text -->
+                    </div>
+                </div>
+                <div class="container background-gray-lighter">
+                    <div class="row padding-vert-20">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-10">
+                            <!-- Portfolio -->
+                            <ul class="portfolio-group">
+                            {% for item in posts%}
+                                <!-- Portfolio Item -->
+                                <li class="portfolio-item col-sm-6 col-xs-6 padding-20">
+                                    <a href="{% url 'post_detail' item.id %}">
+                                        <figure class="animate fadeInLeft">
+                                            <img alt="image1" src="{{item.image.url}}">
+                                            <figcaption>
+                                                <h3>{{item.title}}</h3>
+                                                <span>{{item.text}}</span>
+                                            </figcaption>
+                                        </figure>
+                                    </a>
+                                </li>
+                                <!-- //Portfolio Item// -->
+                            {% endfor%}
+                            </ul>
+                            <!-- End Portfolio -->
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                    </div>
+                </div>
+                <div class="container background-white">
+                    <div class="row padding-vert-40">
+                        <div class="col-md-12">
+                            <h2 class="animate fadeIn text-center">WE ARE CURRENTLY HIRING!</h2>
+                            <p class="animate fadeIn text-center">If you like to work with a creative team in a lively and friendly enviroment then call us today!.</p>
+                            <p class="animate fadeInUp text-center">
+                                <button class="btn btn-primary btn-lg" type="button">View Details</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
             </div>
+            <!-- === END CONTENT === -->
+
 {% endblock content %}

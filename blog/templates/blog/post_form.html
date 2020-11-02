@@ -1,28 +1,62 @@
-{% load static  %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nam's Blog</title>
-</head>
-<body>
-    <h1>Welcome to Nam's blog</h1><a></a>
-    <p style='color:red'>{{post.author}}</p>
-    <p style='font-size:9px'>{{post.created}}</p>
-    <p>{{post.title}}</p>
-    {% if post.image %}
-        <img src="{{post.image.url}}" alt="" width="10%" height="10%">
-    {% endif %}
-    <p>{{post.text}}</p>
-    {% if user.username %}
-        <form action="{% url 'update_post' post.id %}" method='POST' enctype="multipart/form-data">
-            {%csrf_token%}
-            <p><lable>Update: </lable></p>
-            {{ form.as_p }}  
-            <input type='submit'  value='update'>
-        </form>
-    {%endif%}
-    
-</body>
-</html>
+{% extends "blog/base.html" %}
+
+{% block title %}
+Add Post
+{% endblock title %}
+
+{% block content %}
+            <!-- === BEGIN CONTENT === -->
+            <div id="content">
+                <div class="container background-white">
+                    <div class="container">
+                        <div class="row margin-vert-30">
+                            <!-- Login Box -->
+                            <div class="col-md-6 col-md-offset-3 col-sm-offset-3">
+                                {% if user.username %}
+                                <form action="{% url 'add_post' %}" method="POST" enctype="multipart/form-data" class="login-page">
+                                    {% csrf_token %}
+                                    {% for key,value in form.errors.item %}
+                                        {{value}}
+                                    {% endfor %}
+                                    <div class="login-header margin-bottom-30 text-center">
+                                    {% if user.username %}
+                                        <h2>Hi {{user.username}}<h2>
+                                    {% endif %}
+                                        <h2>Update Post</h2>
+                                    </div>
+                                    <div class="input-group margin-bottom-20">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </span>                                       
+                                        {{form.title}}
+                                        {% comment %} <input placeholder="Username" class="form-control" type="text"> {% endcomment %}
+                                    </div>
+                                    <div class="input-group margin-bottom-20">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-pencil-square-o"></i>
+                                        </span>      
+                                            {{form.text}}
+                                        {% comment %} <input placeholder="Password" class="form-control" type="password"> {% endcomment %}
+                                    </div><div class="input-group margin-bottom-20">
+                                        
+                                            {{form.image}}
+                                        {% comment %} <input placeholder="Password" class="form-control" type="password"> {% endcomment %}
+                                    </div>
+                                    <div class = "text-center ">
+                                            <button class="btn btn-primary pull-center margin-bottom-20"  type="submit">Post</button>
+                                    </div>
+                                    <hr>
+                                    
+                                </form>
+                            </div>
+                            {%endif%}
+
+                            <!-- End Login Box -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- === END CONTENT === -->
+
+{% endblock %}
+   
