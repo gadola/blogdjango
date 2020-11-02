@@ -4,10 +4,7 @@
 {{post.title}}
 {% endblock title %}
 {% block content %}
-    {% if user.username == post.author.username %}
-        <a href  = '{% url "update_post" post.id %}'>Update</a>
-        <a href  = '{% url "delete_post" post.id %}'>Delete</a>
-    {% endif %}
+    
     {% comment %} <p style='color:red'>{{post.author}}</p>
     <p style='font-size:10px'>{{post.created}}</p>
     <p>{{post.title}}</p>
@@ -33,6 +30,10 @@
 <!-- === BEGIN CONTENT === -->
             <div id="content">
                 <div class="container background-white">
+                {% if user.username == post.author.username %}
+                    <a style="margin-top:20px" class="btn btn-primary" href  = '{% url "update_post" post.id %}'>Update</a>
+                    <a style="margin-top:20px" class="btn btn-primary" href  = '{% url "delete_post" post.id %}'>Delete</a>
+                {% endif %}
                     <div class="row margin-vert-30">
                         <!-- Main Column -->
                         <div class="col-md-9">
@@ -40,7 +41,7 @@
                                 <div class="blog-item-header">
                                     <h2>
                                         <a href="#">
-                                            {{post.title    }}
+                                            {{post.title}}
                                         </a>
                                     </h2>
                                 </div>
