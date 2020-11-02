@@ -28,14 +28,14 @@ Add Post
                                         <span class="input-group-addon">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </span>
-                                        {{form.title}}
+                                        {{form.title|linebreaks}}
                                         {% comment %} <input placeholder="Username" class="form-control" type="text"> {% endcomment %}
                                     </div>
                                     <div class="input-group margin-bottom-20">
                                         <span class="input-group-addon">
                                             <i class="fa fa-pencil-square-o"></i>
                                         </span>      
-                                            {{form.text}}
+                                            {{form.text|safe|linebreaks}}
                                         {% comment %} <input placeholder="Password" class="form-control" type="password"> {% endcomment %}
                                     </div><div class="input-group margin-bottom-20">
                                             {{form.image}}
