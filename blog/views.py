@@ -201,3 +201,13 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 def error(request, exception):
     return render(request, 'blog/page404.html', {'message': exception})
+
+
+class Contact(View):
+    def get(self,request):       
+        return render(request, 'blog/contact.html')
+
+    def post(self,request):
+        if request.method == 'POST':
+            pass
+        return render(request,'blog/contact.html')
